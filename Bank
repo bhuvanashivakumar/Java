@@ -1,0 +1,107 @@
+package Concat;
+
+public interface Account1 {
+	 void withdraw(double amt);
+	 void deposit(double amt);
+	 void checkBal();
+}
+-----------------------------------------------------------------------------------------
+package Concat;
+
+public class Saving implements Account1{
+
+		int accnum;
+		String accname;
+		double balance;
+		Saving(int accnum,String accname,double balance)
+		{
+	this.accname=accname;
+	this.balance=balance;
+	this.accnum=accnum;
+	}
+		@Override
+		public void withdraw(double amt) {
+		if(amt<=balance)
+		{
+			balance=balance-amt;
+		    System.out.println("withdraw Rs"+amt);
+		}
+		else
+			{
+			   System.out.println("withdraw not done Rs"+amt);
+			}
+		}
+		
+		@Override
+		public void deposit(double amt) {
+			balance=balance+amt;
+	
+			   System.out.println("Deposting Rs"+amt);
+		}
+		@Override
+		public void checkBal() {
+			   System.out.println("Balance Rs"+balance);
+			
+		}
+	}
+
+--------------------------------------------------------------------------------
+package Concat;
+
+public class Loan implements Account1{
+
+	int accnum;
+	String accname;
+	double balance;
+	Loan(int accnum,String accname,double balance)
+	{
+this.accname=accname;
+this.balance=balance;
+this.accnum=accnum;
+}
+	@Override
+	public void withdraw(double amt) {
+	if(amt<=balance)
+	{
+		balance=balance-amt;
+	    System.out.println("withdraw Rs"+amt);
+	}
+	else
+		{
+		   System.out.println("withdraw not done Rs"+amt);
+		}
+	}
+	
+	@Override
+	public void deposit(double amt) {
+		balance=balance+amt;
+
+		   System.out.println("Deposting Rs"+amt);
+	}
+	@Override
+	public void checkBal() {
+		   System.out.println("Balance Rs"+balance);
+		
+	}
+}
+
+--------------------------------------------------------------------------
+package Concat;
+
+public class AccountManager {
+	static Account1 createAccount(String name,int num,double bal,char type)
+	{
+		Account1 ref=null;
+		if(type=='s')
+		{
+			ref=new Saving(num,name,bal);
+			System.out.println("Savings account has created");
+		}
+		else
+		{
+			ref=new Loan(num,name,bal);
+			System.out.println("Loan account has created");
+		}
+		return ref;
+	}	
+}
