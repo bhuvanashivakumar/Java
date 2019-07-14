@@ -1,0 +1,129 @@
+package Concat;
+
+public interface Netflix {
+	
+	void recharge(double amt);
+	void trial(int days);
+}
+----------------------------------------------------
+package Concat;
+
+public class Premium implements Netflix
+{
+		String name;
+		String password;
+		
+		 Premium(String name,String password)
+		{
+	this.name=name;
+	this.password=password;
+	
+	}
+		@Override
+		public void trial(int days) {
+		int total=365;
+		if(days<=total)
+		{
+			total=365-days;
+		    System.out.println("No. of days left"+total);
+		}
+		else
+			{
+			   System.out.println("No. of days exeeded"+days);
+			}
+		}
+		
+		@Override
+		public void recharge(double amt) {
+			double balance = 0;
+			 balance = balance+amt;
+	
+			   System.out.println("Deposting Rs"+amt);
+		}
+	}
+  ---------------------------------------------------------------------------------
+package Concat;
+
+public class NonPremium implements Netflix
+{
+		String name;
+		String password;
+		
+		 NonPremium(String name,String password)
+		{
+	this.name=name;
+	this.password=password;
+	
+	}
+		@Override
+		public void trial(int days) {
+		int total=365;
+		if(days<=total)
+		{
+			total=365-days;
+		    System.out.println("No. of days left"+total);
+		}
+		else
+			{
+			   System.out.println("No. of days exeeded"+days);
+			}
+		}
+		
+		@Override
+		public void recharge(double amt) {
+			double balance = 0;
+			 balance = balance+amt;
+	
+			   System.out.println("Deposting Rs"+amt);
+		}
+	}
+  -------------------------------------------------------------------------
+package Concat;
+
+public class Manager2 {
+	private static String password;
+
+	static Netflix createAccount(String name,String password,char type)
+	{
+		Netflix ref=null;
+		if(type=='P')
+		{
+			ref=new Premium(name, password);
+			System.out.println("Premium account has been created");
+		}
+		else
+		{
+			ref=new NonPremium(name, password);
+			System.out.println("NonPremium account has been created");
+		}
+		return ref;
+	}
+}
+------------------------------------------------------------------------------
+package Concat;
+
+
+import java.util.Scanner;
+
+public class Main0 {
+public static void main(String[] args) {
+	System.out.println("started");
+	Scanner sc=new Scanner(System.in);
+	System.out.println("entre your name");
+	String name=sc.next();
+	System.out.println("entre your password");
+	String password=sc.next();
+	System.out.println("Press P for premium else any for nonpremium");
+	char type=sc.next().charAt(0);
+	Netflix ref=Manager2.createAccount(name,password,type);
+	ref.recharge(9844);
+    ref.trial(type);
+	
+}
+}
+
+
+
+
+
+
